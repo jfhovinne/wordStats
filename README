@@ -1,0 +1,35 @@
+The jQuery wordStats plugin tries to determine what a page is about by computing the density of its keywords.
+It uses a simple algorithm which adds a variable weight for each keyword occurence, depending on its 'position' in the document.
+Although this computation model is quite simple, I get good results with all sorts of documents.
+There's of course a system to exclude 'stop words' (frequent pronouns, prepositions, adverbs and so on).
+
+Example: computing top keywords of a Wikipedia article:
+http://www.hovinne.com/dev/jquery/wordstats/mars.html
+
+Usage:
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.wordstats.js"></script> <!-- core code -->
+<script type="text/javascript" src="jquery.wordstats.en.js"></script> <!-- English stop words -->
+<script type="text/javascript">
+
+       $(function() {
+
+           var count = 3;            
+           $.wordStats.computeTopWords(count);
+
+           //$.wordStats.topWords[0] returns the most frequent keyword
+           //$.wordStats.topWords[1] the second, and so on
+
+           $.wordStats.clear(); //release memory
+
+           //compute top keywords of the element with id="content"
+           $.wordStats.computeTopWords(count, $('#content'));
+
+       });
+
+</script>
+
+Dual licensed under MIT/GPL.
+
+http://www.hovinne.com/blog/index.php/2007/08/09/135-jquery-wordstats-plugin
